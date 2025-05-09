@@ -4,9 +4,9 @@ import TrailRequestForm from './components/TrailRequestForm';
 import SignupForm from './components/SignupForm';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/dashboard';
-import PaymentCheckout from './components/PaymentCheckout';
-import ViewResults from './components/ViewResults';
-import AboutUs from './components/AboutUs';
+import PendingRequests from './components/PendingRequests';
+import DeniedRequests from './components/DeniedRequests';
+import ApprovedRequests from './components/ApprovedRequests';
 
 
 
@@ -19,9 +19,9 @@ function App() {
         <Route path="/trail-request" element={<TrailRequestForm />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Dashboard" element={<Dashboard/>}/>
-        <Route path="/payment" element={<PaymentCheckout />} />
-        <Route path="/view-results" element={<ViewResults />} />
-        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/pending-request" element={<PendingRequests />} />
+        <Route path="/denied-request" element={<DeniedRequests/>}/>
+        <Route path="/ApprovedRequests" element={<ApprovedRequests/>}/>
       </Routes>
     </Router>
   );

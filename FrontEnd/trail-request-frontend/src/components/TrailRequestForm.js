@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import './TrailRequestForm.css';
-
-
 
 const TrailRequestForm = () => {
   const [formData, setFormData] = useState({
@@ -63,19 +62,16 @@ const TrailRequestForm = () => {
     const payload = new FormData();
     payload.append('lPermitDate', formData.lPermitDate);
     payload.append('drivingSchoolName', formData.drivingSchoolName);
-    payload.append('lPermit', formData.lPermit);
-    payload.append('medicalFront', formData.medicalFront);
-    payload.append('medicalBack', formData.medicalBack);
+    if (formData.lPermit) payload.append('lPermit', formData.lPermit);
+    if (formData.medicalFront) payload.append('medicalFront', formData.medicalFront);
+    if (formData.medicalBack) payload.append('medicalBack', formData.medicalBack);
 
     try {
-      const res = await fetch('http://localhost:8080/api/trail-request', {
-        method: 'POST',
-        body: payload,
+      const response = await axios.post('http://localhost:8080/api/trail-request', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-
-      if (!res.ok) {
-        throw new Error('Failed to submit form');
-      }
 
       alert('Trail Request Submitted Successfully!');
       setFormData({
